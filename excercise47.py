@@ -16,5 +16,14 @@ def get_int_recursive():
         get_int_recursive()
 
 
-get_int_iterative()
+def get_int():
+    while value := input("Give me an integer number: "):
+        try:
+            return int(value)
+        except ValueError:
+            print("Not a valid integer. Try it again!")
+
+
+# get_int_iterative()
 # get_int_recursive()
+get_int()
