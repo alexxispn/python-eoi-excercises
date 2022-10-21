@@ -23,13 +23,13 @@ class ARN:
         return len(self.seq)
 
     @property
-    def nucleotides(self) -> dict:
+    def num_nucleotides(self) -> dict:
         return {nucleotide: self.seq.count(nucleotide) for nucleotide in
                 (self.ADENINE, self.GUAINE, self.CYTOSINE, self.THYMINE)}
 
     @property
     def rate_nucleotides(self) -> dict:
-        nucleotides = self.nucleotides
+        nucleotides = self.num_nucleotides
         return {nucleotide: round(nucleotides[nucleotide] / self.size, 2) for
                 nucleotide in nucleotides}
 
@@ -56,5 +56,5 @@ adn3 = adn1 + adn2
 adn4 = adn1 * adn2
 print(adn3)
 print(adn4)
-print(adn1.nucleotides)
+print(adn1.num_nucleotides)
 print(adn1.rate_nucleotides)
