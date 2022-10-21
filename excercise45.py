@@ -6,13 +6,12 @@ class File:
     def add_content(self, *content: str):
         self.contents.extend(content)
 
-    def info(self):
+    def info(self) -> str:
         return f'{self.path}  [size={self.size}B]'
 
     @property
-    def size(self):
-        contents_text = ''.join(self.contents)
-        return len([char for char in contents_text])
+    def size(self) -> int:
+        return sum(len(letter) for letter in self.contents)
 
 
 class MediaFile(File):
@@ -22,7 +21,7 @@ class MediaFile(File):
         self.geoloc = geoloc
         self.duration = duration
 
-    def info(self):
+    def info(self) -> str:
         return f'{super().info()}\nCodec: {self.codec}\nGeolocalization:' \
                f' {self.geoloc}' \
                f'\nDuration: {self.duration}s'
@@ -34,7 +33,7 @@ class VideoFile(MediaFile):
         super().__init__(path, codec, geoloc, duration)
         self.dimensions = dimensions
 
-    def info(self):
+    def info(self) -> str:
         return f'{super().info()}\nDimensions: {self.dimensions}'
 
 
